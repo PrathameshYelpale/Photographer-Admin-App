@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchOrders } from '../Actions/Actions'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Dashboard() {
     const Orders = useSelector(state => state.reducer.Orders);
@@ -22,15 +23,16 @@ function Dashboard() {
                 >
                     Welcome to Order Record Dashboard
                 </Typography>
+                <br/>
 
                 <TableContainer>
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Client</TableCell>
-                                <TableCell>Date of Order</TableCell>
-                                <TableCell>Status</TableCell>
-                                <TableCell>Update Status</TableCell>
+                                <TableCell><b>Client</b></TableCell>
+                                <TableCell><b>Date of Order</b></TableCell>
+                                <TableCell><b>Status</b></TableCell>
+                                <TableCell><b>Update Status</b></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -40,7 +42,7 @@ function Dashboard() {
                                         <TableCell>{order.clientName}</TableCell>
                                         <TableCell>{order.orderDate}</TableCell>
                                         <TableCell>{order.status}</TableCell>
-                                        <TableCell>Update Status</TableCell>
+                                        <TableCell><EditIcon /></TableCell>
                                     </TableRow>
                                 ))
                             }

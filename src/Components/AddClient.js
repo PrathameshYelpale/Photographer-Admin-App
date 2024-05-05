@@ -98,12 +98,20 @@ function AddClient() {
             address: event.target.address.value,
             mobileNo: event.target.mobileNo.value,
             email: event.target.email.value,
-            date: event.target.date.value,
-            orderType: event.target.selectedPackageType
+            orderDate: event.target.orderDate.value,
+            Package: [{
+                orderType: selectedPackageType,
+                orderPackage: selectedPackageDetails,
+                orderDescription: selectedDescription,
+                price: selectedPrice
+            }],
+            remarks: event.target.remarks.value,
+            status: event.target.status.value,
         };
         try {
             await dispatch(addClient(clientData));
             console.log('Client added successfully');
+            alert('Client added successfully');
         } catch (error) {
             console.error('Error adding client:', error);
         }
@@ -172,7 +180,7 @@ function AddClient() {
 
                     <div>
                         <label>Order Date:</label>
-                        <input type='date' name='date' />
+                        <input type='date' name='orderDate' />
                     </div>
 
                     <div>
@@ -191,6 +199,7 @@ function AddClient() {
                     <div>
                         <label>Package Name:</label>
                         <select
+                            name='orderPackage'
                             value={selectedPackageDetails}
                             onChange={handlePackageDetailsChange}
                         >
@@ -205,7 +214,7 @@ function AddClient() {
 
                     <div>
                         <label>Select Description:</label>
-                        <select value={selectedDescription} onChange={(e) => setSelectedDescription(e.target.value)}>
+                        <select name='orderDescription' value={selectedDescription} onChange={(e) => setSelectedDescription(e.target.value)}>
                             <option value='' disabled>Select a option</option>
                             {selectedPackageDetails &&
                                 Packages.find((pack) => pack.type === selectedPackageType)
@@ -220,7 +229,7 @@ function AddClient() {
 
                     <div>
                         <label>Price:</label>
-                        <input type='text' value={selectedPrice} onChange={handlePriceChange} />
+                        <input type='text' name='price' value={selectedPrice} onChange={handlePriceChange} />
                     </div>
 
                     <div>
@@ -230,16 +239,16 @@ function AddClient() {
 
                     <div>
                         <label>Status:</label>
-                        <select>
+                        <select name='status'>
                             <option value=''>Select Status</option>
-                            <option value=''>Order Booked</option>
-                            <option value=''>Shoot Done</option>
-                            <option value=''>Photos Selection Pending</option>
-                            <option value=''>Photos Selection Done</option>
-                            <option value=''>Design in Progress</option>
-                            <option value=''>Design Done</option>
-                            <option value=''>Printing Done</option>
-                            <option value=''>Album Delivered</option>
+                            <option value='Order Booked'>Order Booked</option>
+                            <option value='Shoot Done'>Shoot Done</option>
+                            <option value='Photos Selection Pending'>Photos Selection Pending</option>
+                            <option value='Photos Selection Done'>Photos Selection Done</option>
+                            <option value='Design in Progress'>Design in Progress</option>
+                            <option value='Design Done'>Design Done</option>
+                            <option value='Printing Done'>Printing Done</option>
+                            <option value='Album Delivered'>Album Delivered</option>
                         </select>
                     </div>
 
