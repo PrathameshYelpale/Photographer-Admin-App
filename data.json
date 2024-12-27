@@ -41,6 +41,24 @@
       ],
       "remarks": "Add cinematic reel.",
       "status": "Order Booked"
+    },
+    {
+      "id": "1ff4",
+      "clientName": "Shreyash",
+      "address": "Pune",
+      "mobileNo": "9596869586",
+      "email": "shreyash@infy.com",
+      "orderDate": "31 December 2024",
+      "Package": [
+        {
+          "orderType": "Photo, Video & Drone Shoot",
+          "orderPackage": "Gold",
+          "orderDescription": "Leather Cover Album with Suitcase",
+          "price": 40000
+        }
+      ],
+      "remarks": "",
+      "status": "Order Booked"
     }
   ],
   "Packages": [

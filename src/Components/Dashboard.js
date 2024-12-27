@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchOrders } from '../Actions/Actions'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchOrders } from '../Actions/Actions';
+import { Button, Table } from 'react-bootstrap';
+import { FaEdit } from 'react-icons/fa'; // Using react-icons for the Edit icon
 
 function Dashboard() {
     const Orders = useSelector(state => state.reducer.Orders);
@@ -10,48 +10,45 @@ function Dashboard() {
 
     useEffect(() => {
         dispatch(fetchOrders());
-    }, [dispatch])
-    console.log(Orders);
-    return (
-        <>
-            <div>
-                <Typography
-                    variant='h4'
-                    component='div'
-                    align='center'
-                    mx={1} pt={3}
-                >
-                    Welcome to Order Record Dashboard
-                </Typography>
-                <br/>
+    }, [dispatch]);
 
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell><b>Client</b></TableCell>
-                                <TableCell><b>Date of Order</b></TableCell>
-                                <TableCell><b>Status</b></TableCell>
-                                <TableCell><b>Update Status</b></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {
-                                Orders && Orders.map((order) => (
-                                    <TableRow key={order.id}>
-                                        <TableCell>{order.clientName}</TableCell>
-                                        <TableCell>{order.orderDate}</TableCell>
-                                        <TableCell>{order.status}</TableCell>
-                                        <TableCell><EditIcon /></TableCell>
-                                    </TableRow>
-                                ))
-                            }
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+    return (
+        <div className="container mt-5">
+            {/* Heading */}
+            <h4 className="text-center mb-4">
+                Welcome to Order Record Dashboard
+            </h4>
+
+            {/* Table */}
+            <div className="table-responsive">
+                <Table striped bordered hover>
+                    <thead>
+                        <tr>
+                            <th>Client</th>
+                            <th>Date of Order</th>
+                            <th>Status</th>
+                            <th>Update Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Orders && Orders.map((order) => (
+                            <tr key={order.id}>
+                                <td>{order.clientName}</td>
+                                <td>{order.orderDate}</td>
+                                {/* <td>{new Date(order.orderDate).toLocaleDateString()}</td> */}
+                                <td>{order.status}</td>
+                                <td>
+                                    <Button variant="outline-primary">
+                                        <FaEdit />
+                                    </Button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-export default Dashboard
+export default Dashboard;
