@@ -59,6 +59,24 @@
       ],
       "remarks": "",
       "status": "Order Booked"
+    },
+    {
+      "id": "80cd",
+      "clientName": "Sumit Kumar",
+      "address": "Ranchi",
+      "mobileNo": "9654586599",
+      "email": "sumit@infy.com",
+      "orderDate": "1 January 2025",
+      "Package": [
+        {
+          "orderType": "Photo, Video & Drone Shoot",
+          "orderPackage": "Gold",
+          "orderDescription": "Leather Cover Album with Suitcase, Minibook & Calender",
+          "price": 45000
+        }
+      ],
+      "remarks": "Need All soft copies",
+      "status": "Order Booked"
     }
   ],
   "Packages": [

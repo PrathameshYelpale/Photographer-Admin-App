@@ -11,8 +11,9 @@ function Header() {
                 <div className="container-fluid">
                     {/* Brand Name / Home link */}
                     <a
+                        href='/'
                         className="navbar-brand"
-                        onClick={() => navigate('/')}
+                        // onClick={() => navigate('/')}
                         style={{ cursor: 'pointer' }}
                     >
                         Order Record
