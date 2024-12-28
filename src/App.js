@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route exact path='/' Component={Dashboard} />
           <Route exact path='/addClient' Component={AddClient} />
-          <Route exact path='/updateClientStatus' Component={UpdateClientStatus} />
+          <Route exact path='/updateClientStatus/:id' Component={UpdateClientStatus} />
         </Routes>
       </BrowserRouter>
     </div>
