@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { fetchOrdersById, updateOrderStatus } from '../Actions/Actions';
 
 function UpdateClientStatus() {
+    const navigate = useNavigate();
     const orders = useSelector((state) => state.reducer.Orders);
     console.log('All orders :', orders);
 
@@ -50,6 +51,10 @@ function UpdateClientStatus() {
             console.log('Updating order with ID:', id, 'New data:', updatedOrderData);
 
             dispatch(updateOrderStatus(id, updatedOrderData));
+            alert('Data updated successfully');
+            setTimeout(() => {
+                navigate('/');
+            }, 1000);
         } else {
             console.error('Missing ID or status');
         }

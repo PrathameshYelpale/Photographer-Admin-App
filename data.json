@@ -77,6 +77,42 @@
       ],
       "remarks": "Need All soft copies",
       "status": "Order Booked"
+    },
+    {
+      "id": "e0d5",
+      "clientName": "Omkar Jadhav",
+      "address": "Bloomville Hinjewadi, Pune",
+      "mobileNo": "9975650523",
+      "email": "oj@infy.com",
+      "orderDate": "20 December 2024",
+      "Package": [
+        {
+          "orderType": "Photo, Video & Drone Shoot",
+          "orderPackage": "Gold",
+          "orderDescription": "Leather Cover Album with Suitcase, Minibook & Calender",
+          "price": 45000
+        }
+      ],
+      "remarks": "",
+      "status": "Photos Selection Pending"
+    },
+    {
+      "id": "93dd",
+      "clientName": "dvsdvs",
+      "address": "sdsdsd",
+      "mobileNo": "837835783783737",
+      "email": "gdsgsgsg",
+      "orderDate": "12 December 2024",
+      "Package": [
+        {
+          "orderType": "Photo Shoot",
+          "orderPackage": "Silver",
+          "orderDescription": "Leather Cover Album with Minibook & Calender",
+          "price": 17000
+        }
+      ],
+      "remarks": "",
+      "status": "Shoot Done"
     }
   ],
   "Packages": [

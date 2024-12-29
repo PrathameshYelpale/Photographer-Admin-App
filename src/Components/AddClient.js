@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { fetchPackages, addClient } from '../Actions/Actions'
+import { useNavigate } from 'react-router-dom';
 
 function AddClient() {
+    const navigate = useNavigate();
     const Packages = useSelector(state => state.reducer.Packages);
     const dispatch = useDispatch();
     const [selectedPackageType, setSelectedPackageType] = useState('')
@@ -114,6 +116,9 @@ function AddClient() {
         try {
             await dispatch(addClient(clientData));
             alert('Client added successfully');
+            setTimeout(() => {
+                navigate('/');
+            }, 2000);
         } catch (error) {
             console.error('Error adding client:', error);
         }
