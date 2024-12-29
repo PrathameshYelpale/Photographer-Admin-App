@@ -9,7 +9,7 @@
       "orderDate": "2017-01-01",
       "orderType": "Photo and Video Shoot",
       "Package": [],
-      "status": "Design Done",
+      "status": "Photos Selection Done",
       "isActive": "Yes"
     },
     {
@@ -21,7 +21,7 @@
       "orderDate": "2017-01-01",
       "orderType": "Photo & Video Shoot",
       "Package": [],
-      "status": "Selection Pending",
+      "status": "Shoot Done",
       "isActive": "Yes"
     },
     {
@@ -40,7 +40,7 @@
         }
       ],
       "remarks": "Add cinematic reel.",
-      "status": "Order Booked"
+      "status": "Album Delivered"
     },
     {
       "id": "1ff4",

@@ -6,18 +6,18 @@ export const fetchOrders = () => {
     return (dispatch) => {
         dispatch({ type: FETCH_ORDERS_REQUEST });
         axios.get('http://localhost:5001/Orders')
-        .then((response) => {
-            dispatch({
-                type: FETCH_ORDERS_SUCCESS,
-                payload: response.data
-            });
-        })
-        .catch((error) => {
-            dispatch({
-                type: FETCH_ORDERS_FAIL,
-                payload: error.message
-            });
-        })
+            .then((response) => {
+                dispatch({
+                    type: FETCH_ORDERS_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: FETCH_ORDERS_FAIL,
+                    payload: error.message
+                });
+            })
     }
 }
 
@@ -26,66 +26,73 @@ export const fetchOrdersById = (id) => {
     return (dispatch) => {
         dispatch({ type: FETCH_ORDERS_BY_ID_REQUEST });
         axios.get(`http://localhost:5001/Orders/${id}`)
-        .then((response) => {
-            dispatch({
-                type: FETCH_ORDERS_BY_ID_SUCCESS,
-                payload: response.data
+            .then((response) => {
+                dispatch({
+                    type: FETCH_ORDERS_BY_ID_SUCCESS,
+                    payload: response.data // Single order object
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: FETCH_ORDERS_BY_ID_FAIL,
+                    payload: error.message
+                });
             });
-        })
-        .catch((error) => {
-            dispatch({
-                type: FETCH_ORDERS_BY_ID_FAIL,
-                payload: error.message
-            });
-        })
-    }
-}
+    };
+};
 
 //Fetching Packages
 export const fetchPackages = () => {
     return (dispatch) => {
         dispatch({ type: FETCH_PACKAGES_REQUEST });
         axios.get('http://localhost:5001/Packages')
-        .then((response) => {
-            dispatch({
-                type: FETCH_PACKAGES_SUCCESS,
-                payload: response.data
-            });
-        })
-        .catch((error) => {
-            dispatch({
-                type: FETCH_PACKAGES_FAIL,
-                payload: error.message
-            });
-        })
+            .then((response) => {
+                dispatch({
+                    type: FETCH_PACKAGES_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: FETCH_PACKAGES_FAIL,
+                    payload: error.message
+                });
+            })
     }
 }
 
 //Adding Client
 export const addClient = (clientData) => {
-    return(dispatch) => {
+    return (dispatch) => {
         dispatch({ type: ADD_CLIENT_REQUEST });
         axios.post('http://localhost:5001/Orders', clientData)
-        .then((response) => {
-            dispatch({
-                type: ADD_CLIENT_SUCCESS,
-                payload: response.data
-            });
-        })
-        .catch((error) => {
-            dispatch({
-                type: ADD_CLIENT_FAIL,
-                payload: error.message
-            });
-        })
+            .then((response) => {
+                dispatch({
+                    type: ADD_CLIENT_SUCCESS,
+                    payload: response.data
+                });
+            })
+            .catch((error) => {
+                dispatch({
+                    type: ADD_CLIENT_FAIL,
+                    payload: error.message
+                });
+            })
     }
 }
 
 //Updating Client Status
-export const updateOrderStatus = (data) => {
+export const updateOrderStatus = (id, updatedOrderData) => {
     return (dispatch) => {
+        // Check for invalid id or status
+        if (!id || !updatedOrderData.status) {
+            console.error('Missing ID or status for updating order');
+            return;
+        }
         dispatch({ type: UPDATE_CLIENT_STATUS_REQUEST });
-        axios.put(`http://localhost:5001/Orders/${data.id}`, data)
+
+        // Send the full updated order data to the backend
+        axios.put(`http://localhost:5001/Orders/${id}`, updatedOrderData)
             .then((response) => {
                 dispatch({
                     type: UPDATE_CLIENT_STATUS_SUCCESS,
@@ -93,10 +100,11 @@ export const updateOrderStatus = (data) => {
                 });
             })
             .catch((error) => {
+                console.error('Error updating order status:', error);
                 dispatch({
                     type: UPDATE_CLIENT_STATUS_FAIL,
                     payload: error.message
                 });
-            })
+            });
     };
 };
