@@ -2,37 +2,21 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrders } from '../Actions/Actions';
 import { Button, Table } from 'react-bootstrap';
-import { FaEdit } from 'react-icons/fa'; // Using react-icons for the Edit icon
+import { FaEdit } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     const Orders = useSelector(state => state.reducer.Orders);
     const dispatch = useDispatch();
-    const navigate = useNavigate(); // useNavigate hook for programmatic navigation
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(fetchOrders());
     }, [dispatch]);
 
-    // const handleEditClick = (order) => {
-    //     // Navigate to /updateClientStatus and pass data as state
-    //     navigate('/updateClientStatus', { state: { clientName: order.clientName, currentStatus: order.status } });
-    // };
-
     if (!Array.isArray(Orders)) {
-        return <div>Loading...</div>; // Or return an appropriate fallback UI
-    }
-
-    const handleEditClick = (order) => {
-        navigate('/updateClientStatus', {
-            state: {
-                clientName: order.clientName,
-                currentStatus: order.status,
-                orderId: order.id
-            }
-        });
-    };
-    
+        return <div>Loading...</div>;
+    }    
 
     return (
         <div className="container mt-5">
@@ -60,7 +44,6 @@ function Dashboard() {
                                 <td>{order.status}</td>
                                 <td>
                                     <Button variant="outline-primary" 
-                                    // onClick={() => handleEditClick(order)}
                                     >
                                         <Link to={`/updateClientStatus/${order.id}`}>
                                         <FaEdit />

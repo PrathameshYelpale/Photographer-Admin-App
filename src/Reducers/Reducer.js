@@ -29,7 +29,7 @@ const Reducer = (state = initialState, action) => {
                 error: action.payload,
             };
 
-            //fetch orders by id
+        //fetch orders by id
         case FETCH_ORDERS_BY_ID_REQUEST:
             return {
                 ...state,
@@ -42,6 +42,7 @@ const Reducer = (state = initialState, action) => {
                 loading: false,
                 Orders: action.payload,
             };
+
         case FETCH_ORDERS_BY_ID_FAIL:
             return {
                 ...state,
