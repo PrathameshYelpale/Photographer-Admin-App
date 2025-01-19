@@ -43,6 +43,22 @@ function AddPackages() {
         });
     };
 
+    const handleDeletePackage = (packageIndex) => {
+        setPackages((prev) => {
+            const updatedPackages = [...prev.detailsOfPackage];
+            updatedPackages.splice(packageIndex, 1);
+            return { ...prev, detailsOfPackage: updatedPackages };
+        });
+    };
+
+    const handleDeleteSubDetail = (packageIndex, subIndex) => {
+        setPackages((prev) => {
+            const updatedPackages = [...prev.detailsOfPackage];
+            updatedPackages[packageIndex].details.splice(subIndex, 1);
+            return { ...prev, detailsOfPackage: updatedPackages };
+        });
+    };
+
     const handlePackageTypeChange = (index, value) => {
         setPackages((prev) => {
             const updatedPackages = [...prev.detailsOfPackage];
@@ -107,6 +123,14 @@ function AddPackages() {
                     {packages.detailsOfPackage.map((pkg, pkgIndex) => (
                         <div key={pkgIndex} className="card mb-4">
                             <div className="card-body">
+                                {/* Package Header with Delete Icon */}
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <h5 className="card-title">Package {pkgIndex + 1}</h5>
+                                    <i class="bi bi-trash"
+                                        onClick={() => handleDeletePackage(pkgIndex)}
+                                    ></i>
+                                </div>
+
                                 {/* Package Type */}
                                 <div className="mb-3">
                                     <label className="form-label">Package Type:</label>
@@ -115,9 +139,7 @@ function AddPackages() {
                                         className="form-control"
                                         placeholder="Enter Package Type (e.g., Silver, Gold)"
                                         value={pkg.type}
-                                        onChange={(e) =>
-                                            handlePackageTypeChange(pkgIndex, e.target.value)
-                                        }
+                                        onChange={(e) => handlePackageTypeChange(pkgIndex, e.target.value)}
                                     />
                                 </div>
 
@@ -128,6 +150,14 @@ function AddPackages() {
                                             key={detailIndex}
                                             className="border p-3 mb-3 rounded"
                                         >
+                                            {/* Sub-Detail Header with Delete Icon */}
+                                            <div className="d-flex justify-content-between align-items-center">
+                                                <h6>Detail {detailIndex + 1}</h6>
+                                                <i class="bi bi-trash"
+                                                    onClick={() => handleDeleteSubDetail(pkgIndex, detailIndex)}
+                                                ></i>
+                                            </div>
+
                                             <div className="mb-3">
                                                 <label className="form-label">
                                                     Package Description:
