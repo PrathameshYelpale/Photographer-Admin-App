@@ -35,6 +35,16 @@ function Header() {
                     {/* Navbar links */}
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto">
+                            {/* Add Packages Button */}
+                            <li className="nav-item">
+                                <button
+                                    className="btn btn-link text-white"
+                                    onClick={() => navigate('/addPackages')}
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    Add Packages
+                                </button>
+                            </li>
                             {/* Add Client Button */}
                             <li className="nav-item">
                                 <button
