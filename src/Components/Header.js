@@ -5,14 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 function Header() {
   const navigate = useNavigate();
 
-  async function handleLogout(){
-    try{
-      await axios.post("http://localhost:5500/logout", {}, {withCredentials: true})
-           
-         navigate("/login")
-    }catch(error){
-          throw new Error("Error while logging out");
-          
+  async function handleLogout() {
+    try {
+      await axios.post("http://localhost:5500/logout", {}, { withCredentials: true })
+
+      navigate("/login")
+    } catch (error) {
+      throw new Error("Error while logging out");
+
     }
   }
 
@@ -47,6 +47,16 @@ function Header() {
           {/* Navbar links */}
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
+              {/* Add Packages Button */}
+              <li className="nav-item">
+                <button
+                  className="btn btn-link text-white"
+                  onClick={() => navigate('/addPackages')}
+                  style={{ textDecoration: 'none' }}
+                >
+                  Add Packages
+                </button>
+              </li>
               {/* Add Client Button */}
               <li className="nav-item">
                 <button
@@ -58,12 +68,12 @@ function Header() {
                 </button>
               </li>
               <li>
-              <Link className="btn text-white" onClick={handleLogout}>Logout</Link>
+                <Link className="btn text-white" onClick={handleLogout}>Logout</Link>
               </li>
             </ul>
           </div>
 
-         
+
         </div>
       </nav>
     </div>
