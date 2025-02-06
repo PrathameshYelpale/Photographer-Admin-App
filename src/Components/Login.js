@@ -9,177 +9,63 @@ const Login = () => {
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("")
   const [place, setPlace] = useState("")
-  const[isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false)
   const [err, setErr] = useState("");
   const navigate = useNavigate();
 
-  async function handleLogin() {
+  async function handleSubmit() {
     try {
-      const res = await  axios.post(
-        "http://localhost:5500/login",
-        {
-          emailId,
-          password,
-        },
-        { withCredentials: true }
-      );
-      return navigate("/");
-      //   console.log("res", res.data)
-    } catch (err) {
-      setErr(err?.response?.data);
-    }
-  }
-
- async function handleSignUp(){
-    try {
-      const res = await axios.post(
-        "http://localhost:5500/signup",
-        {
-          firstName,
-          lastName,
-          place,
-          gender,
-          emailId,
-          password,
-        },
-        { withCredentials: true }
-      );
-      return navigate("/");
-      //   console.log("res", res.data)
-    } catch (err) {
-      setErr(err?.response?.data);
+      const url = isLogin ? "http://localhost:5500/login" : "http://localhost:5500/signup";
+      const payload = isLogin ? { emailId, password } : { firstName, lastName, place, gender, emailId, password };
+      await axios.post(url, payload, { withCredentials: true });
+      navigate("/");
+    } catch (error) {
+      setErr(error?.response?.data);
     }
   }
 
   return (
-    <div className="flex justify-center m-6">
-      <div className="card bg-base-100 w-96 shadow-xl border-l-blue-700">
+    <div className="d-flex justify-content-center bg-light">
+      <div className="card shadow-lg p-4" style={{ width: "548px", marginTop: "32px" }}>
         <div className="card-body">
-          <h2 className="card-title">{isLogin ? "Log In" : "Sign Up"}</h2>
-          <label className="form-control w-full max-w-xs">
-            {
-              !isLogin ?<>
-              <div className="label">
-              <span className="label-text">First Name :</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter First Name"
-              className="input input-bordered w-full max-w-xs"
-              value={firstName}
-              onChange={(e) => {
-                setFirstName(e.target.value);
-              }}
-            />
-
-            <div className="label">
-              <span className="label-text">Last Name :</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter First Name"
-              className="input input-bordered w-full max-w-xs"
-              value={lastName}
-              onChange={(e) => {
-                setLastName(e.target.value);
-              }}
-            />
-
-            <div className="label">
-              <span className="label-text">Place :</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter your place"
-              className="input input-bordered w-full max-w-xs"
-              value={place}
-              onChange={(e) => {
-                setPlace(e.target.value);
-              }}
-            />
-
-            <div className="label">
-              <span className="label-text">Gender :</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter male, female or others only"
-              className="input input-bordered w-full max-w-xs"
-              value={gender}
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
-            />
-
-            <div className="label">
-              <span className="label-text">Email Id :</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter email ID"
-              className="input input-bordered w-full max-w-xs"
-              value={emailId}
-              onChange={(e) => {
-                setEmailId(e.target.value);
-              }}
-            />
-
-            <div className="label">
-              <span className="label-text">Password :</span>
-            </div>
-            <input
-              type="password"
-              placeholder="*********"
-              className="input input-bordered w-full max-w-xs"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-              </>  : <>
-                <div className="label">
-              <span className="label-text">Email Id :</span>
-            </div>
-            <input
-              type="text"
-              placeholder="Enter email ID"
-              className="input input-bordered w-full max-w-xs"
-              value={emailId}
-              onChange={(e) => {
-                setEmailId(e.target.value);
-              }}
-            />
-
-            <div className="label">
-              <span className="label-text">Password :</span>
-            </div>
-            <input
-              type="password"
-              placeholder="*********"
-              className="input input-bordered w-full max-w-xs"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }} />
-              </>
-            }
-
-
-            <p className="text-red-500">{err}</p>
-          </label>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary" onClick={isLogin ? handleLogin : handleSignUp}>
-             {isLogin ? "Log In" : "Sign Up"}
-            </button>
+          <h2 className="text-center mb-4">{isLogin ? "Log In" : "Sign Up"}</h2>
+          {!isLogin && (
+            <>
+              <div className="mb-3">
+                <label className="form-label">First Name</label>
+                <input type="text" className="form-control" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Enter First Name" />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Last Name</label>
+                <input type="text" className="form-control" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Enter Last Name" />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Place</label>
+                <input type="text" className="form-control" value={place} onChange={(e) => setPlace(e.target.value)} placeholder="Enter your place" />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Gender</label>
+                <select className="form-select" value={gender} onChange={(e) => setGender(e.target.value)}>
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </>
+          )}
+          <div className="mb-3">
+            <label className="form-label">Email</label>
+            <input type="email" className="form-control" value={emailId} onChange={(e) => setEmailId(e.target.value)} placeholder="Enter Email" />
           </div>
-
-          <p
-            className="m-auto cursor-pointer py-2"
-            onClick={() => setIsLogin((value) => !value)}
-          >
-            {isLogin
-              ? "New user, Signup here"
-              : "Existing user, Login here"}
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="********" />
+          </div>
+          {err && <p className="text-danger">{err}</p>}
+          <button className="btn btn-primary w-100" onClick={handleSubmit}>{isLogin ? "Log In" : "Sign Up"}</button>
+          <p className="text-center mt-3 text-primary" style={{ cursor: "pointer" }} onClick={() => setIsLogin(!isLogin)}>
+            {isLogin ? "New user? Sign up here" : "Existing user? Log in here"}
           </p>
         </div>
       </div>

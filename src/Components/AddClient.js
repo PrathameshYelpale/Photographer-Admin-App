@@ -170,6 +170,7 @@ function AddClient() {
                             id="mobileNo"
                             placeholder="Enter Mobile Number"
                             className="form-control"
+                            maxLength={10}
                         />
                     </div>
                     <div className="col-md-6">

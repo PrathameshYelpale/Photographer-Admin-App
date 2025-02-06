@@ -65,7 +65,8 @@ export const fetchPackages = () => {
 export const addClient = (clientData) => {
     return (dispatch) => {
         dispatch({ type: ADD_CLIENT_REQUEST });
-        axios.post('http://localhost:5001/Orders', clientData)
+        // axios.post('http://localhost:5001/Orders', clientData)
+        axios.post('http://localhost:5500/addClient', clientData)
             .then((response) => {
                 dispatch({
                     type: ADD_CLIENT_SUCCESS,
@@ -113,7 +114,8 @@ export const updateOrderStatus = (id, updatedOrderData) => {
 export const addPackages = (packagesData) => {
     return (dispatch) => {
         dispatch({ type: ADD_PACKAGE_REQUEST });
-        axios.post('http://localhost:5001/Packages', packagesData)
+        // axios.post('http://localhost:5001/Packages', packagesData)
+        axios.post('http://localhost:5500/addPackages', packagesData)
             .then((response) => {
                 dispatch({
                     type: ADD_PACKAGE_SUCCESS,
