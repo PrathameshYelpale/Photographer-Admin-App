@@ -9,7 +9,7 @@ const Login = () => {
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("")
   const [place, setPlace] = useState("")
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(true)
   const [err, setErr] = useState("");
   const navigate = useNavigate();
 
@@ -18,7 +18,8 @@ const Login = () => {
       const url = isLogin ? "http://localhost:5500/login" : "http://localhost:5500/signup";
       const payload = isLogin ? { emailId, password } : { firstName, lastName, place, gender, emailId, password };
       await axios.post(url, payload, { withCredentials: true });
-      navigate("/");
+      window.location.href = "/dashboard";
+      // navigate("/");
     } catch (error) {
       setErr(error?.response?.data);
     }
