@@ -19,6 +19,7 @@ function UpdateClientStatus() {
     useEffect(() => {
         if (id) {
             dispatch(fetchOrdersById(id));
+            console.log('Fetching order with ID:', id);
         }
     }, [dispatch, id]);
 
@@ -53,7 +54,7 @@ function UpdateClientStatus() {
             dispatch(updateOrderStatus(id, updatedOrderData));
             alert('Data updated successfully');
             setTimeout(() => {
-                navigate('/');
+                navigate('/dashboard');
             }, 1000);
         } else {
             console.error('Missing ID or status');

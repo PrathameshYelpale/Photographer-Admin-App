@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [emailId, setEmailId] = useState("");
@@ -11,7 +10,6 @@ const Login = () => {
   const [place, setPlace] = useState("")
   const [isLogin, setIsLogin] = useState(true)
   const [err, setErr] = useState("");
-  const navigate = useNavigate();
 
   async function handleSubmit() {
     try {
@@ -19,7 +17,6 @@ const Login = () => {
       const payload = isLogin ? { emailId, password } : { firstName, lastName, place, gender, emailId, password };
       await axios.post(url, payload, { withCredentials: true });
       window.location.href = "/dashboard";
-      // navigate("/");
     } catch (error) {
       setErr(error?.response?.data);
     }

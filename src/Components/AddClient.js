@@ -117,7 +117,7 @@ function AddClient() {
             await dispatch(addClient(clientData));
             alert('Client added successfully');
             setTimeout(() => {
-                navigate('/');
+                navigate('/dashboard');
             }, 2000);
         } catch (error) {
             console.error('Error adding client:', error);

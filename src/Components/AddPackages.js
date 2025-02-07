@@ -96,7 +96,7 @@ function AddPackages() {
             });
             // Navigate to the desired route (e.g., home or package list)
             setTimeout(() => {
-                navigate("/");
+                navigate("/dashboard");
             }, 2000);
         } catch (error) {
             console.error("Error adding package:", error);

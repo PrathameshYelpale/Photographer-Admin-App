@@ -5,7 +5,8 @@ import { FETCH_ORDERS_REQUEST, FETCH_ORDERS_SUCCESS, FETCH_ORDERS_FAIL, FETCH_PA
 export const fetchOrders = () => {
     return (dispatch) => {
         dispatch({ type: FETCH_ORDERS_REQUEST });
-        axios.get('http://localhost:5001/Orders')
+        // axios.get('http://localhost:5001/Orders')
+        axios.get('http://localhost:5500/clients')
             .then((response) => {
                 dispatch({
                     type: FETCH_ORDERS_SUCCESS,
@@ -25,7 +26,8 @@ export const fetchOrders = () => {
 export const fetchOrdersById = (id) => {
     return (dispatch) => {
         dispatch({ type: FETCH_ORDERS_BY_ID_REQUEST });
-        axios.get(`http://localhost:5001/Orders/${id}`)
+        // axios.get(`http://localhost:5001/Orders/${id}`)
+        axios.get(`http://localhost:5500/clients/${id}`)
             .then((response) => {
                 dispatch({
                     type: FETCH_ORDERS_BY_ID_SUCCESS,
@@ -45,7 +47,8 @@ export const fetchOrdersById = (id) => {
 export const fetchPackages = () => {
     return (dispatch) => {
         dispatch({ type: FETCH_PACKAGES_REQUEST });
-        axios.get('http://localhost:5001/Packages')
+        // axios.get('http://localhost:5001/Packages')
+        axios.get('http://localhost:5500/packages')
             .then((response) => {
                 dispatch({
                     type: FETCH_PACKAGES_SUCCESS,
@@ -93,7 +96,8 @@ export const updateOrderStatus = (id, updatedOrderData) => {
         dispatch({ type: UPDATE_CLIENT_STATUS_REQUEST });
 
         // Send the full updated order data to the backend
-        axios.put(`http://localhost:5001/Orders/${id}`, updatedOrderData)
+        // axios.put(`http://localhost:5001/Orders/${id}`, updatedOrderData)
+        axios.put(`http://localhost:5500/clients/${id}`, updatedOrderData)
             .then((response) => {
                 dispatch({
                     type: UPDATE_CLIENT_STATUS_SUCCESS,
