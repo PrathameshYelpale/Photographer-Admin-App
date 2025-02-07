@@ -117,7 +117,7 @@ function AddClient() {
             await dispatch(addClient(clientData));
             alert('Client added successfully');
             setTimeout(() => {
-                navigate('/');
+                navigate('/dashboard');
             }, 2000);
         } catch (error) {
             console.error('Error adding client:', error);
@@ -170,6 +170,7 @@ function AddClient() {
                             id="mobileNo"
                             placeholder="Enter Mobile Number"
                             className="form-control"
+                            maxLength={10}
                         />
                     </div>
                     <div className="col-md-6">

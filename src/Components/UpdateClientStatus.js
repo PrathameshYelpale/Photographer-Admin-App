@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { fetchOrdersById, updateOrderStatus } from '../Actions/Actions';
 
@@ -19,6 +19,7 @@ function UpdateClientStatus() {
     useEffect(() => {
         if (id) {
             dispatch(fetchOrdersById(id));
+            console.log('Fetching order with ID:', id);
         }
     }, [dispatch, id]);
 
@@ -53,7 +54,7 @@ function UpdateClientStatus() {
             dispatch(updateOrderStatus(id, updatedOrderData));
             alert('Data updated successfully');
             setTimeout(() => {
-                navigate('/');
+                navigate('/dashboard');
             }, 1000);
         } else {
             console.error('Missing ID or status');
