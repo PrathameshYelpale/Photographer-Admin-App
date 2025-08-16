@@ -91,7 +91,7 @@ function Dashboard() {
                                 <td>
                                     <Button variant="outline-primary"
                                     >
-                                        <Link to={`/updateClientStatus/${order.id}`}>
+                                        <Link to={`/updateClientStatus/${order._id}`}>
                                             <FaEdit />
                                         </Link>
                                     </Button>

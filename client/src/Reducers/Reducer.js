@@ -1,4 +1,4 @@
-import { FETCH_ORDERS_REQUEST, FETCH_ORDERS_SUCCESS, FETCH_ORDERS_FAIL, FETCH_PACKAGES_REQUEST, FETCH_PACKAGES_SUCCESS, FETCH_PACKAGES_FAIL, ADD_CLIENT_REQUEST, ADD_CLIENT_SUCCESS, ADD_CLIENT_FAIL, UPDATE_CLIENT_STATUS_REQUEST, UPDATE_CLIENT_STATUS_SUCCESS, UPDATE_CLIENT_STATUS_FAIL, FETCH_ORDERS_BY_ID_REQUEST, FETCH_ORDERS_BY_ID_SUCCESS, FETCH_ORDERS_BY_ID_FAIL } from '../Actions/ActionTypes';
+import { FETCH_ORDERS_REQUEST, FETCH_ORDERS_SUCCESS, FETCH_ORDERS_FAIL, FETCH_PACKAGES_REQUEST, FETCH_PACKAGES_SUCCESS, FETCH_PACKAGES_FAIL, ADD_CLIENT_REQUEST, ADD_CLIENT_SUCCESS, ADD_CLIENT_FAIL, UPDATE_CLIENT_STATUS_REQUEST, UPDATE_CLIENT_STATUS_SUCCESS, UPDATE_CLIENT_STATUS_FAIL, FETCH_ORDERS_BY_ID_REQUEST, FETCH_ORDERS_BY_ID_SUCCESS, FETCH_ORDERS_BY_ID_FAIL, ADD_PACKAGE_REQUEST, ADD_PACKAGE_SUCCESS, ADD_PACKAGE_FAIL } from '../Actions/ActionTypes';
 
 const initialState = {
     Orders: [],
@@ -106,6 +106,26 @@ const Reducer = (state = initialState, action) => {
             };
 
         case UPDATE_CLIENT_STATUS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            };
+
+        //Add Packages
+        case ADD_PACKAGE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null,
+            };
+        case ADD_PACKAGE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                Packages: action.payload,
+            };
+        case ADD_PACKAGE_FAIL:
             return {
                 ...state,
                 loading: false,
